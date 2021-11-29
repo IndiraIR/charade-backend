@@ -1,14 +1,19 @@
 const jwt = require("jsonwebtoken");
 const authRouter = require("express").Router();
 
-const { signUp, logIn, getUser } = require("../controllers/auth.controller");
+const {
+  signUp,
+  logIn,
+  getAllUsers,
+} = require("../controllers/auth.controller");
 
 authRouter.post("/signUp", signUp);
 authRouter.post("/logIn", logIn);
-authRouter.get("/me", auth, isAdmin,getUser);
+authRouter.get("/users", auth, isAdmin, getAllUsers);
 
 function auth(req, res, next) {
   // req. body query params headers => headers.token
+  console.log(req.headers.token)
   jwt.verify(req.headers.token, process.env.SECRET, (err, insideToken) => {
     if (err) res.json("Token not valid");
     res.locals.id = insideToken.id;

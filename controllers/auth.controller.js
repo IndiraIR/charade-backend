@@ -8,6 +8,7 @@ function createToken(inside) {
 }
 
 function signUp(req, res) {
+  
   const hashed_pwd = bcrypt.hashSync(req.body.pwd, 10);
   const jwt = require("jsonwebtoken");
 
@@ -31,7 +32,7 @@ function signUp(req, res) {
 
       const resUser = {
         id: user._id,
-        name: user.name + user.surname,
+        name: `${user.name} ${user.surname}`,
         email: user.email,
         token: createToken(insideToken),
       };
@@ -45,6 +46,7 @@ function signUp(req, res) {
 
 function logIn(req, res) {
   // req.body.email && pwd
+
   userModel
     .findOne({ email: req.body.email })
     .then((user) => {
@@ -61,7 +63,7 @@ function logIn(req, res) {
 
         const resUser = {
           id: user._id,
-          name: user.name + user.surname,
+          name: `${user.name} ${user.surname}`,
           email: user.email,
           token: createToken(insideToken),
         };
