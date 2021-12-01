@@ -1,8 +1,8 @@
 const mongoose = require('mongoose')
 
 const meaningsSchema = new mongoose.Schema({
-  num: {
-    type: 'integer',
+ id: {
+    type: Number,
   },
   word: {
     type: Array

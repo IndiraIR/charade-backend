@@ -7,12 +7,18 @@ function getAllMeanings(req, res) {
 }
 
 function getMeanNum (req, res) {
-  meaningModel.findById(req.params.num)
-    .then((mean) => { res.json(mean)})
-    .catch((err) => { res.json(err)})
+  console.log(req.params.numId);
+  meaningModel
+    .find({ id: { $eq: req.params.numId } })
+    .then((itmean) => {
+      res.json(itmean);
+    })
+    .catch((err) => {
+      res.json(err);
+    });
 }
 
 module.exports = {
   getAllMeanings,
-  getMeanId,
+  getMeanNum,
 };
