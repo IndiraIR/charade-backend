@@ -4,7 +4,7 @@ const meaningsSchema = new mongoose.Schema({
  id: {
     type: Number,
   },
-  word: {
+  words: {
     type: Array
   },
   charadeId: {
